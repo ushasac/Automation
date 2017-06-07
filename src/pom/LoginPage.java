@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 public class LoginPage extends BasePage {
 	@FindBy(id="username")
@@ -24,14 +25,23 @@ public class LoginPage extends BasePage {
 		PageFactory.initElements(driver, this);
 	}
 	
-	public void setUserName(String un){
+	public void setUserName(String un)
+	{
 		unTextBox.sendKeys(un);
-		
 	}
 	
 	public void setPassword(String pw){
 		pwTextBox.sendKeys(pw);
-		
 	}
 	
+	
+	public void clickLogin() 
+	{
+		loginButton.click();
+	} 
+	
+	public void verifyErrMsgDsplayed(){
+		Assert.assertTrue(errMsg.isDisplayed());
+	}
+
 }
